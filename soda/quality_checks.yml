@@ -1,0 +1,31 @@
+checks for dataset:
+  # Valider le nombre de lignes d'une colonne
+  - row_count > 0:
+      name: Le nombre de lignes du jeu de donnée devrait toujours être plus grand que 0
+
+  # Valider le maximum permit d'une colonne
+  - min(balance) >= 0:
+      name: Les valeurs de la colonne balance doivent toujours être au minimum 0
+
+  # Tester le maximum permit d'une colonne
+  - max(balance) <= 1000000:
+      name: Les valeurs de la colonne balance doivent toujours être au maximum 1000000
+
+  # Utilisation des avertissements
+  - min(balance):
+      warn: when < 100
+      name: Avertissement lorsqu'une valeur de balance tombe en dessous de 100$
+
+  # Valider le nombre de valeurs nulles (manquantes) permises
+  - missing_count(branch_id) = 0:
+      name: Le nombre de valeurs nulles de la colonne branch_id devrait être 0
+
+  # Valider les duplicats
+  - duplicate_count(account_id) = 0:
+      name: Le nombre de duplicats dans la colonne account_id devrait être 0
+
+  # Valider le nombre de valeurs invalides permises
+  # Dans ce cas-ci, on utilise une liste de valeurs permises
+  - invalid_count(account_type) = 0:
+      name: Les account_type sont tous l'une ou l'autre des valeurs dans la liste "valid values"
+      valid values: ['Savings', 'Investment', 'Checking']

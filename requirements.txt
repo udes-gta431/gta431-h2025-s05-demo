@@ -1,0 +1,9 @@
+pandas
+notebook
+jupyterlab
+
+soda-core==3.4.4
+soda-core-pandas-dask==3.4.4
+pandas>=1.5.0
+numpy<2.0
+xarray>=2023.09.0
